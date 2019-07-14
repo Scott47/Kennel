@@ -3,6 +3,7 @@ import React, { Component } from "react"
 import AnimalList from './animal/AnimalList'
 import LocationList from './location/LocationList'
 import EmployeeList from './employee/EmployeeList'
+import OwnerList from './owner/ownerList'
 
 class ApplicationViews extends Component {
     employeesFromAPI = [
@@ -54,7 +55,7 @@ class ApplicationViews extends Component {
                     return <EmployeeList employees={this.state.employees} />
                 }} />
                 <Route path="/owners" render={(props) => {
-                    return <EmployeeList owners={this.state.owners} />
+                    return <OwnerList owners={this.state.owners} />
                 }} />
             </React.Fragment>
         )
