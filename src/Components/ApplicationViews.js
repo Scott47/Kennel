@@ -1,8 +1,8 @@
 import { Route } from 'react-router-dom'
 import React, { Component } from "react"
+import AnimalList from './animal/AnimalList'
 import LocationList from './location/LocationList'
 import EmployeeList from './employee/EmployeeList'
-
 
 class ApplicationViews extends Component {
     employeesFromAPI = [
@@ -36,16 +36,14 @@ class ApplicationViews extends Component {
         return (
             <React.Fragment>
                 <Route exact path="/" render={(props) => {
-                    console.log("props: ", props);
-                    console.log("this.props: ", this.props);
                     return <LocationList locations={this.state.locations} />
+                }} />
+                <Route path="/animals" render={(props) => {
+                    return <AnimalList animals={this.state.animals} />
                 }} />
                 <Route path="/employees" render={(props) => {
                     return <EmployeeList employees={this.state.employees} />
                 }} />
-                <Route path="/animals" render={(props) => {
-                    return <AnimalList animals={this.state.animals} />
-                }} / >
             </React.Fragment>
         )
     }
