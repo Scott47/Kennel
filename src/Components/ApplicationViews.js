@@ -10,7 +10,8 @@ export default class ApplicationViews extends Component {
     state = {
         locations: [],
         animals: [],
-        employees: []
+        employees: [],
+        owners: []
     }
 
 componentDidMount() {
@@ -22,6 +23,9 @@ componentDidMount() {
         .then(() => fetch("http://localhost:5002/employees")
         .then(r => r.json()))
         .then(employees => newState.employees = employees)
+        .then(() => fetch("http://localhost:5002/owners")
+        .then(r => r.json()))
+        .then(owners => newState.owners = owners)
         .then(() => this.setState(newState))
 }
 
