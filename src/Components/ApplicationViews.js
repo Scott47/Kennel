@@ -1,10 +1,10 @@
-import { Route } from 'react-router-dom'
-import React, { Component } from "react"
-import AnimalList from './animal/AnimalList'
-import LocationList from './location/LocationList'
-import EmployeeList from './employee/EmployeeList'
-import OwnerList from './owner/ownerList'
-import AnimalManager from "../modules/AnimalManager"
+import { Route } from 'react-router-dom';
+import React, { Component } from "react";
+import AnimalList from './animal/AnimalList';
+import LocationList from './location/LocationList';
+import EmployeeList from './employee/EmployeeList';
+import OwnerList from './owner/ownerList';
+import AnimalManager from "../modules/AnimalManager";
 import OwnerManager from '../modules/OwnerManager';
 import EmployeeManager from '../modules/EmployeeManager';
 import LocationManager from '../modules/EmployeeManager';
@@ -32,18 +32,14 @@ export default class ApplicationViews extends Component {
             .then(locations => newState.locations = locations)
             .then(() => this.setState(newState))
     }
-    deleteAnimal = id => {
-        return fetch(`http://localhost:5002/animals/${id}`, {
-            method: "DELETE"
-        })
-        .then(e => e.json())
-        .then(() => fetch(`http://localhost:5002/animals`))
-        .then(e => e.json())
+
+    deleteAnimal = (id) => {
+        return AnimalManager.removeAndList(id)
         .then(animals => this.setState({
             animals: animals
-        })
+          })
         )
-    }
+      }
 
     deleteOwner = id => {
         return fetch(`http://localhost:5002/owners/${id}`, {

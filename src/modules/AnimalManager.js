@@ -7,5 +7,12 @@ export default {
   },
   getAll() {
     return fetch(`${remoteURL}/animals`).then(e => e.json())
+  },
+  deleteAnimal(id){
+      return fetch(`${remoteURL}/animals/${id}`, {
+          method: "DELETE"}).then(e => e.json())
+  },
+  removeAndList(id) {
+      return this.deleteAnimal(id).then(this.getAll())
   }
 }
