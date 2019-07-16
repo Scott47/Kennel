@@ -14,8 +14,19 @@ export default Object.create(APIManager, {
         }
     },
     deleteAnimal: {
-        value: function (id)
-        {return fetch(`${remoteURL}/animals/${id}`, {
+        value: function (id){
+          return fetch(`${remoteURL}/animals/${id}`, {
             method: "DELETE"}).then(e => e.json())}
+    },
+    post: {
+        value: function (newAnimal) {
+          return fetch(`${remoteURL}/animals`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(newAnimal)})
+          .then(data => data.json())
+        }
     }
-})
+  })
