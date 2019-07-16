@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 import dog from "./DogIcon.svg"
 import "./Employee.css"
 
@@ -13,6 +14,7 @@ export default class EmployeeList extends Component {
                           <div className="card-title">
                               <img src={dog} className="icon--dog" />
                               <h5>{employee.name}</h5>
+                              <Link className="nav-link" to={`/employees/${employee.id}`}>Details</Link>
                               <button
                                   onClick={() => this.props.deleteEmployee(employee.id)}
                                   className="card-link">Delete</button>

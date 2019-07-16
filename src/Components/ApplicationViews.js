@@ -10,6 +10,8 @@ import OwnerManager from '../modules/OwnerManager';
 import EmployeeManager from '../modules/EmployeeManager';
 import LocationManager from '../modules/EmployeeManager';
 import AnimalDetail from './animal/AnimalDetail'
+import EmployeeDetail from './employee/EmployeeDetail'
+import "./employee/Employee.css"
 import "./animal/Animal.css"
 
 
@@ -79,8 +81,19 @@ class ApplicationViews extends Component {
 
                 }} />
 
-                <Route path="/employees" render={(props) => {
+                <Route exact path="/employees" render={(props) => {
                     return <EmployeeList employees={this.state.employees} />
+                }} />
+                <Route path="/employees/:employeeId(\d+)" render={(props) => {
+                    // Find() loops through animals and runs a comparison
+                    let employee = this.state.animals.find(employee => employee.id === +(props.match.params.employeeId))
+
+                    // If the animal wasn't found, create a defalut one
+                    if (!employee) {
+                        employee = {id:404, name:404, breed: "Employee not found"}
+                    }
+                    // return animal object and pass it method of this.deleteAnimal AnimalDetail gets rendered, then, pass it a variable.
+                    return <EmployeeDetail employee={ employee } />
                 }} />
                 <Route path="/owners" render={(props) => {
                     return <OwnerList deleteOwner={this.deleteOwner} owners={this.state.owners} />

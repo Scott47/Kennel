@@ -18,17 +18,3 @@ export default Object.create(APIManager, {
             method: "DELETE"}).then(e => e.json())}
     }
 })
-// export default {
-//   get(id) {
-//     return fetch(`${remoteURL}/animals/${id}`).then(e => e.json())
-//   },
-//   getAll() {
-//     return fetch(`${remoteURL}/animals`).then(e => e.json())
-//   },
-
-// export default {
-
-//   removeAndList(id) {
-//       return this.deleteAnimal(id).then(this.getAll())
-//   }
-// }
