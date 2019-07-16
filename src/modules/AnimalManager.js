@@ -1,5 +1,5 @@
 import APIManager from "./APIManager"
-
+const remoteURL = "http://localhost:5002"
 
 export default Object.create(APIManager, {
     get: {
@@ -11,6 +11,11 @@ export default Object.create(APIManager, {
             value: function () {
             return APIManager.all("animals")
         }
+    },
+    deleteAnimal: {
+        value: function (id)
+        {return fetch(`${remoteURL}/animals/${id}`, {
+            method: "DELETE"}).then(e => e.json())}
     }
 })
 // export default {
@@ -22,10 +27,7 @@ export default Object.create(APIManager, {
 //   },
 
 // export default {
-//   deleteAnimal(id){
-//       return fetch(`${remoteURL}/animals/${id}`, {
-//           method: "DELETE"}).then(e => e.json())
-//   },
+
 //   removeAndList(id) {
 //       return this.deleteAnimal(id).then(this.getAll())
 //   }
