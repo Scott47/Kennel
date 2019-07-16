@@ -9,10 +9,12 @@ import AnimalManager from "../modules/AnimalManager";
 import OwnerManager from '../modules/OwnerManager';
 import EmployeeManager from '../modules/EmployeeManager';
 import LocationManager from '../modules/EmployeeManager';
-import AnimalDetail from './animal/AnimalDetail'
+import AnimalDetail from './animal/AnimalDetail';
+import LocationDetail from './location/LocationDetail'
 import EmployeeDetail from './employee/EmployeeDetail'
 import "./employee/Employee.css"
 import "./animal/Animal.css"
+import "./location/Location.css"
 
 
 // import AnimalManager from "../modules/AnimalManager"
@@ -85,16 +87,31 @@ class ApplicationViews extends Component {
                     return <EmployeeList employees={this.state.employees} />
                 }} />
                 <Route path="/employees/:employeeId(\d+)" render={(props) => {
-                    // Find() loops through animals and runs a comparison
-                    let employee = this.state.animals.find(employee => employee.id === +(props.match.params.employeeId))
+                    // Find() loops through employees and runs a comparison
+                    let employee = this.state.employees.find(employee => employee.id === +(props.match.params.employeeId))
 
-                    // If the animal wasn't found, create a defalut one
+                    // If the employe wasn't found, create a defalut one
                     if (!employee) {
                         employee = {id:404, name:404, breed: "Employee not found"}
                     }
-                    // return animal object and pass it method of this.deleteAnimal AnimalDetail gets rendered, then, pass it a variable.
+
                     return <EmployeeDetail employee={ employee } />
                 }} />
+                 <Route exact path="/locations" render={(props) => {
+                    return <LocationList locations={this.state.locations} />
+                }} />
+                <Route path="/locations/:locationId(\d+)" render={(props) => {
+                    // Find() loops through location and runs a comparison
+                    let location = this.state.locations.find(location => location.id === +(props.match.params.locationId))
+
+                    // If the location wasn't found, create a defalut one
+                    if (!location) {
+                        location = {id:404, name:404, breed: "Location not found"}
+                    }
+                    // return animal object and pass it method of this.deleteAnimal AnimalDetail gets rendered, then, pass it a variable.
+                    return <LocationDetail location={ location } />
+                }} />
+
                 <Route path="/owners" render={(props) => {
                     return <OwnerList deleteOwner={this.deleteOwner} owners={this.state.owners} />
                 }} />

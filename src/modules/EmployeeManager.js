@@ -1,6 +1,6 @@
 import APIManager from "./APIManager"
 
-const remoteURL = "http://localhost:5002"
+
 
 
 

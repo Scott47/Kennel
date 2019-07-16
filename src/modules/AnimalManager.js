@@ -1,4 +1,5 @@
 import APIManager from "./APIManager"
+
 const remoteURL = "http://localhost:5002"
 
 export default Object.create(APIManager, {
